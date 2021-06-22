@@ -36,6 +36,14 @@ export const BeerImage = styled.div`
 export const BeerTitle = styled.div`
   font-size: 22px;
   font-weight: bold;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 40px;
+  grid-gap: 1rem;
+`
+
+export const BeerTitleLeft = styled.span`
+  flex-grow: 1;
 `
 
 export const BeerDescriptionContent = styled.div`

@@ -1,5 +1,6 @@
 import * as S from './beer.style'
 import Button from '../button'
+import Favourite from '../favourite'
 import { useState } from 'react'
 
 const Beer = ({ beer }) => {
@@ -11,12 +12,20 @@ const Beer = ({ beer }) => {
     const { name } = e.target
     setSelected(name)
   }
+
+  const toggleFavorite = () => {
+    console.log('toggleFavorite')
+  }
+
   console.log(selected)
   return (
     <S.Beer>
       <S.BeerImage path={beer.image_url} />
       <S.BeerInfo>
-        <S.BeerTitle>{name}</S.BeerTitle>
+        <S.BeerTitle>
+          <S.BeerTitleLeft>{name}</S.BeerTitleLeft>
+          <Favourite on={false} onClick={toggleFavorite} />
+        </S.BeerTitle>
 
         <S.BeerDescription>
           <S.BeerDescriptionContent
@@ -34,8 +43,8 @@ const Beer = ({ beer }) => {
           <S.BeerDescriptionContent
             opacity={selected === 'food_pairing' ? 1 : 0}
           >
-            {food_pairing.map((p) => (
-              <p>{p}</p>
+            {food_pairing.map((p, k) => (
+              <p key={k}>{p}</p>
             ))}
           </S.BeerDescriptionContent>
         </S.BeerDescription>
