@@ -24,6 +24,49 @@ export const ResetCss = createGlobalStyle`
   }
 `
 
+export const BeerButtonGroup = styled.div`
+  display: grid;
+  margin: 0 auto;
+  max-width: 500px;
+  grid-gap: 1rem;
+  padding: 1rem;
+  grid-auto-flow: column;
+`
+
+export const BeerToFavouriteList = styled.div`
+  display: grid;
+  max-width: 14rem;
+  align-self: start;
+  grid-gap: 1rem;
+  padding: 1rem;
+
+  @media screen and (max-width: 768px) {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: ${({ theme }) => theme.color.dark.background};
+  }
+`
+
+export const BeerToFavourite = styled.div`
+  border: 2px solid ${({ theme }) => theme.color.dark.primary};
+  background-color: ${({ theme }) => theme.color.dark.backgroundr};
+  text: ${({ theme }) => theme.color.dark.primary};
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+`
+
+export const BeerWrapper = styled.div`
+  display: grid;
+  grid-gap: 1rem;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1fr auto;
+  }
+`
+
 export const BeerList = styled.div`
   display: grid;
   grid-gap: 3rem;
@@ -36,16 +79,12 @@ export const BeerList = styled.div`
     background-color: ${({ theme }) => theme.color.light.background};
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1080px) {
     --template-columns: 8;
   }
 
-  @media screen and (min-width: 1080px) {
-    --template-columns: 12;
-  }
-
   @media screen and (min-width: 1400px) {
-    --template-columns: 16;
+    --template-columns: 12;
   }
 
   grid-template-columns: repeat(var(--template-columns), 1fr);

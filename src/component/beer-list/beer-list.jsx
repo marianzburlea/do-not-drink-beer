@@ -98,26 +98,36 @@ const BeerList = () => {
     <div>
       <S.ResetCss />
 
-      <div>
+      <S.BeerButtonGroup>
         <Button name="previous" onClick={changePage}>
           previous
         </Button>
         <Button name="next" onClick={changePage}>
           next
         </Button>
-      </div>
+      </S.BeerButtonGroup>
 
-      <S.BeerList>
-        {beerList.map((beer) => (
-          <Beer
-            key={beer.id}
-            beer={beer}
-            userId={userId}
-            isOn={beer.isOn}
-            toggleFavorite={toggleFavorite}
-          />
-        ))}
-      </S.BeerList>
+      <S.BeerWrapper>
+        <S.BeerList>
+          {beerList.map((beer) => (
+            <Beer
+              key={beer.id}
+              beer={beer}
+              userId={userId}
+              isOn={beer.isOn}
+              toggleFavorite={toggleFavorite}
+            />
+          ))}
+        </S.BeerList>
+
+        <S.BeerToFavouriteList>
+          {beerList
+            .filter((beer) => beer.isOn)
+            .map((beer) => (
+              <S.BeerToFavourite key={beer.id}>{beer.name}</S.BeerToFavourite>
+            ))}
+        </S.BeerToFavouriteList>
+      </S.BeerWrapper>
     </div>
   )
 }
