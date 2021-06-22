@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin'
-import NextCORS from 'next-cors'
+import NextCors from 'nextjs-cors'
 
 const account = {
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
