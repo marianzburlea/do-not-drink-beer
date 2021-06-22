@@ -3,7 +3,7 @@ import Button from '../button'
 import Favourite from '../favourite'
 import { useState } from 'react'
 
-const Beer = ({ beer }) => {
+const Beer = ({ beer, userId, toggleFavorite, isOn }) => {
   const [selected, setSelected] = useState('description')
   const { name, description, brewers_tips, food_pairing } = beer
 
@@ -13,18 +13,16 @@ const Beer = ({ beer }) => {
     setSelected(name)
   }
 
-  const toggleFavorite = () => {
-    console.log('toggleFavorite')
-  }
-
-  console.log(selected)
   return (
     <S.Beer>
       <S.BeerImage path={beer.image_url} />
       <S.BeerInfo>
         <S.BeerTitle>
           <S.BeerTitleLeft>{name}</S.BeerTitleLeft>
-          <Favourite on={false} onClick={toggleFavorite} />
+          <Favourite
+            on={isOn}
+            onClick={() => toggleFavorite(userId, beer.id)}
+          />
         </S.BeerTitle>
 
         <S.BeerDescription>

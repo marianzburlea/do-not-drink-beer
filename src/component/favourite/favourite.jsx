@@ -20,7 +20,8 @@ const Favourite = styled.button`
   }
 
   &::before {
-    content: '${({ on }) => (on ? `\\1F49B` : `\\2661`)}';
+    content: '${({ on }) =>
+      console.log('on', on) || (on ? `\\1F49B` : `\\2661`)}';
   }
 `
 
