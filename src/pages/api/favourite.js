@@ -34,16 +34,14 @@ const handler = async (request, response) => {
     const { userId } = query
 
     const testRef = firestore.collection('test')
-    const testSnap = await testRef.get(userId)
+    const testSnap = await testRef.doc(userId).get()
     // const list = testSnap.data()
     if (testSnap.exists) {
-      testSnap.docs.map((doc) => {
-        const { list } = doc.data()
+      const { list } = testSnap.data()
 
-        response.status(200).json({
-          message: 'The world is a beautiful place to be!',
-          list,
-        })
+      response.status(200).json({
+        message: 'The world is a beautiful place to be!',
+        list,
       })
     } else {
       response.status(200).json({

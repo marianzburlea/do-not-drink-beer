@@ -40,6 +40,7 @@ const BeerList = () => {
               isOn: list.includes(beer.id),
             }))
           )
+          console.log(list)
         }
       } catch (error) {
         // show a message with what went wrong
@@ -94,6 +95,7 @@ const BeerList = () => {
       console.log(error)
     }
   }
+  console.log(beerList)
 
   return (
     <div>
