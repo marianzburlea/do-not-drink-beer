@@ -51,15 +51,21 @@ const handler = async (request, response) => {
       const testRef = firestore.collection('test')
       // get list
       const getSnap = await testRef.doc(userId).get()
-      const data = getSnap.data().list || []
-      const newData = data.includes(beerId)
-        ? data.filter((id) => id !== beerId)
-        : [...data, beerId]
+      if (getSnap) {
+        const data = getSnap.data().list || []
+        const newData = data.includes(beerId)
+          ? data.filter((id) => id !== beerId)
+          : [...data, beerId]
 
-      testRef.doc(userId).set({ list: newData })
-      response.status(200).json({
-        message: 'I am on it boss!',
-      })
+        testRef.doc(userId).set({ list: newData })
+        response.status(200).json({
+          message: 'My favourite job!',
+        })
+      } else {
+        response.status(200).json({
+          message: 'Nothing happened',
+        })
+      }
     } catch (error) {
       response.status(500).json({
         message: 'error',
