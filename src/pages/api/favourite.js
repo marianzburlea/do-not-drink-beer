@@ -36,38 +36,49 @@ const handler = async (request, response) => {
     const testRef = firestore.collection('test')
     const testSnap = await testRef.get(userId)
     // const list = testSnap.data()
-    testSnap.docs.map((doc) => {
-      const { list } = doc.data()
+    if (testSnap.exists) {
+      testSnap.docs.map((doc) => {
+        const { list } = doc.data()
 
+        response.status(200).json({
+          message: 'The world is a beautiful place to be!',
+          list,
+        })
+      })
+    } else {
       response.status(200).json({
         message: 'The world is a beautiful place to be!',
-        list,
+        list: [],
       })
-    })
+    }
   }
 
   if (method === 'POST') {
     try {
-      const testRef = firestore.collection('test')
       // get list
+      const testRef = firestore.collection('test')
       const getSnap = await testRef.doc(userId).get()
-      if (getSnap) {
-        const data = getSnap.data().list || []
+
+      if (getSnap.exists) {
+        const data = getSnap.data().list
         const newData = data.includes(beerId)
           ? data.filter((id) => id !== beerId)
           : [...data, beerId]
 
         testRef.doc(userId).set({ list: newData })
+
         response.status(200).json({
           message: 'My favourite job!',
         })
       } else {
+        testRef.doc(userId).set({ list: [beerId] })
+
         response.status(200).json({
-          message: 'Nothing happened',
+          message: 'Your first favourite',
         })
       }
     } catch (error) {
-      response.status(500).json({
+      response.status(400).json({
         message: 'error',
         error,
       })
