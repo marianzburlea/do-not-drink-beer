@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin'
+inport NextCORS from 'next-cors'
 
 const account = {
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
@@ -21,6 +22,13 @@ const handler = async (request, response) => {
     query,
     method,
   } = request
+
+  await NextCors(request, response, {
+    // Options
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+    origin: '*',
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  });
 
   if (method === 'GET') {
     const { userId } = query
