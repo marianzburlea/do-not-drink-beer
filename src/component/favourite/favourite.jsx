@@ -12,7 +12,7 @@ const Favourite = styled.button`
   border-radius: 50%;
 
   @media screen and (prefers-color-scheme: light) {
-    background-color: ${({ theme }) => theme.color.light.default};
+    background-color: ${({ theme }) => theme.color.dark.default};
   }
 
   &:hover {

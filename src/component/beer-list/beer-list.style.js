@@ -48,14 +48,24 @@ export const BeerToFavouriteList = styled.div`
     border-radius: 1rem;
     background-color: ${({ theme }) => theme.color.dark.background};
   }
+
+  @media screen and (prefers-color-scheme: light) {
+    background-color: ${({ theme }) => theme.color.light.background};
+  }
 `
 
 export const BeerToFavourite = styled.div`
   border: 2px solid ${({ theme }) => theme.color.dark.primary};
-  background-color: ${({ theme }) => theme.color.dark.backgroundr};
-  text: ${({ theme }) => theme.color.dark.primary};
+  background-color: ${({ theme }) => theme.color.dark.background};
+  color: ${({ theme }) => theme.color.dark.primary};
   padding: 0.5rem 1rem;
   border-radius: 1rem;
+
+  @media screen and (prefers-color-scheme: light) {
+    border: 2px solid ${({ theme }) => theme.color.light.primary};
+    background-color: ${({ theme }) => theme.color.light.background};
+    color: ${({ theme }) => theme.color.light.primary};
+  }
 `
 
 export const BeerWrapper = styled.div`
