@@ -10,6 +10,7 @@ export const ResetCss = createGlobalStyle`
   #here {
     margin: 0;
     height: 100%;
+    color: ${({ theme }) => theme.color.dark.text};
     background-color: ${({ theme }) => theme.color.dark.background};
   }
 
@@ -17,19 +18,23 @@ export const ResetCss = createGlobalStyle`
     html,
     body,
     #here {
+      color: ${({ theme }) => theme.color.light.text};
       background-color: ${({ theme }) => theme.color.light.background};
     }
   }
 `
 
 export const BeerList = styled.div`
-  border: 1px solid ${({ theme }) => theme.color.light.primary};
-  border-radius: 1rem;
   display: grid;
+  grid-gap: 3rem;
+  padding: 2rem 2rem;
+  margin: 2rem 0;
+  background-color: ${({ theme }) => theme.color.dark.background};
   --template-columns: 4;
-  grid-gap: 1rem;
-  margin: 1rem 2rem;
-  padding: 1rem 2rem;
+
+  @media screen and (prefers-color-scheme: light) {
+    background-color: ${({ theme }) => theme.color.light.background};
+  }
 
   @media screen and (min-width: 768px) {
     --template-columns: 8;
